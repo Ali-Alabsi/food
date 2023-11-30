@@ -2,6 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../function/valid.dart';
 import 'color.dart';
+List<String> nameCategroty =[
+  'Food',
+  'Drink',
+  'Vegetables',
+  'Fruits',
+  'Dessert',
+  'Cake',
+  'Snacks',
+  'Meat'
+];
 
 Widget NameTFF(String name) {
   return Padding(

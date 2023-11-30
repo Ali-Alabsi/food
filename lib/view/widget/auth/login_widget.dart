@@ -7,9 +7,11 @@ import '../../../core/function/image_picker.dart';
 import '../../../core/function/valid.dart';
 import '../../../core/shared/TFTcontroller.dart';
 import '../../../core/shared/color.dart';
+import '../../../core/shared/dialog.dart';
 import '../../../core/shared/message.dart';
 import '../../../core/shared/radius.dart';
 import '../../../core/shared/widget.dart';
+import '../../../main.dart';
 GetControl contextGetX = Get.put(GetControl());
 
 Widget SingUpScreen({
@@ -74,12 +76,21 @@ Widget SingUpScreen({
                   SizedBox(
                     height: 30,
                   ),
-                  ButtomLogin(
-                      onPressed: () async {
-                        if(formKey.currentState!.validate()){
-                          contextGetX.changeToloadingSignUp();
-                        }
-                        }
+                  GetBuilder<GetControl>(
+                    init: GetControl(),
+                    builder: (value)=>
+                     ButtomLogin(
+                        onPressed: () async {
+                          if(formKey.currentState!.validate()){
+                            contextGetX.changeToloadingSignUp();
+                            value.changeToLoginScreen();
+                            sharedPreferences?.setString("name", nameControllerSingUP.text);
+                            sharedPreferences?.setString("emailSingUP", emailControllerSingUP.text);
+                            sharedPreferences?.setString("PasswordSingUp", passwordControllerSingUP.text);
+                            value.changeToStoploadingSignUp();
+                          }
+                          }
+                    ),
                   ),
                 ],
               ),
@@ -195,6 +206,13 @@ Widget LoginScreen({
                   ButtomLogin(
                       onPressed: () async {
                         if(formKey.currentState!.validate()){
+                          print(sharedPreferences?.getString('emailSingUP'));
+                          print(sharedPreferences?.getString('PasswordSingUp'));
+                          if(sharedPreferences?.getString('emailSingUP') == emailControllerLogin.text || sharedPreferences?.getString('PasswordSingUp') == passwordControllerLogin.text ){
+                            Get.offNamed("/LayoutHome");
+                          }else{
+                            errorDialog( context : context ,  desc: 'The Email Or Password Is Error').show();
+                          }
                           contextGetX.changeToloadingSignUp();
                           // loginInFireBase(context);
                         }

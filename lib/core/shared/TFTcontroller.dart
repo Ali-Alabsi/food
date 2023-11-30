@@ -5,3 +5,4 @@ TextEditingController emailControllerSingUP    = TextEditingController();
 TextEditingController passwordControllerSingUP = TextEditingController();
 TextEditingController emailControllerLogin     = TextEditingController();
 TextEditingController passwordControllerLogin  = TextEditingController();
+TextEditingController searchControllerHome = TextEditingController();

@@ -1,10 +1,13 @@
 
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-class GetControl extends GetxController{
+import '../../core/shared/color.dart';
+
+  class GetControl extends GetxController{
   bool loginScreen = true;
   File?  file;
   getImageGallery() async {
@@ -43,4 +46,62 @@ class GetControl extends GetxController{
     update();
   }
 
+  int indexSelectCatgrety = 0;
+
+  void changeindexSelectCatgrety(index){
+    indexSelectCatgrety = index;
+    update();
+  }
+
+
+  int selectIndexNavBar = 0;
+
+  void changeSelectIndexNavBar(index){
+    selectIndexNavBar = index;
+    update();
+  }
+
+  List<bool> favorite =[
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+
+
+  ] ;
+  void changeFavorite(index){
+    if(favorite[index] ==true){
+      favorite[index] = false;
+    }else{
+      favorite[index] = true;
+    }
+
+    update();
+  }
+  Color  whiteColor = Colors.black;
+  Color  blackColor = Colors.white;
+  changeWhiteColor(){
+    if(whiteColor ==Colors.black){
+      whiteColor = Colors.white;
+    }else{
+      whiteColor = Colors.black;
+    }
+    if(blackColor ==Colors.black){
+      blackColor = Colors.white;
+    }else{
+      blackColor = Colors.black;
+    }
+    update();
+  }
+  bool darkThemes = false;
+  void changedarkThemes(){
+    if(darkThemes==false){
+    darkThemes =true;
+    }else{
+      darkThemes =false;
+    }
+    update();
+  }
 }
